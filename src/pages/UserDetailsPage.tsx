@@ -27,7 +27,7 @@ export default function UserDetailPage() {
 
   return (
     <div>
-      <div style={{ padding: 16 }}>
+      <div style={{ padding: 16, placeItems: 'center',  minWidth: '320px' }}>
         <Link to="/users">← Back</Link>
 
         <div style={{ display: 'flex', gap: 16, marginTop: 12, alignItems: 'center' }}>
