@@ -1,0 +1,210 @@
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.user-card {
+  aspect-ratio: 1 / 0.4;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  text-decoration: none;
+  color: inherit;
+}
+.user-card:hover 
+{
+  color: inherit;
+}
+
+.user-card__top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.user-card__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.user-card__info {
+  flex: 1;
+  overflow: hidden;
+  text-align: left;
+}
+
+.user-card__name {
+  font-weight: 600;
+}
+
+.user-card__email {
+  font-size: 14px;
+  opacity: 0.75;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-card__row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.user-card__label {
+  opacity: 0.6;
+}
+
+.user-card__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* контейнер пагинатора */
+.pager {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+/* ⬅ ВАЖНО: строка кнопок */
+.pager-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* номера страниц */
+.pager-pages {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* кнопки */
+.pager-btn,
+.pager-page {
+  border: 1px solid #ddd;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pager-page.is-active {
+  font-weight: 600;
+  border-color: #999;
+}
+
+.pager-info {
+  font-size: 13px;
+  opacity: 0.75;
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .users-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+  .users-grid { grid-template-columns: 1fr; }
+}
+
+.user-details-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.user-details-card {
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* верхняя строка: аватар + имя справа */
+.user-details-top {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.user-details-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.user-details-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details-name {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.user-details-email {
+  opacity: 0.75;
+}
+
+/* нижний блок с деталями */
+.user-details-extra {
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  text-align: left;
+}
+
+.user-details-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-details-label {
+  font-weight: 600;
+}
+
+.users-filter {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: transparent;
+  color: inherit;
+  width: min(420px, 100%);
+  outline: none;
+  margin-bottom: 16px;
+}
+
+.users-filter:focus {
+  border-color: #999;
+}
+
+.users-title {
+  margin: 0;
+}
