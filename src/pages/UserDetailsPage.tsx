@@ -21,7 +21,7 @@ export default function UserDetailPage() {
   })
 
   if (!id) return <div>No </div>
-  if (!Number.isFinite(userId) || userId <=0) return <div>Bad ID</div>
+  if (!Number.isFinite(userId) || userId <= 0) return <div>Bad ID</div>
   if (q.isLoading) return <div>Loading...</div>
   if (q.isError) return <div>Error: {q.error.message}</div>
 
@@ -30,28 +30,72 @@ export default function UserDetailPage() {
 
   return (
     <div>
-      <div style={{ padding: 16, placeItems: 'center',  minWidth: '320px' }}>
-        <Link to="/users">← Back</Link>
+      <Link to="/users">← Back</Link>
 
-        <div style={{ display: 'flex', gap: 16, marginTop: 12, alignItems: 'center' }}>
-          <img src={user.image} width={110} height={110} style={{ borderRadius: 16, objectFit: 'cover' }} />
-          <div style={{ textAlign: 'left' }}>
-            <h2 style={{ margin: 0 }}>{user.firstName} {user.lastName}</h2>
-            <a href={ `mailto:${user.email}`}
-               style={{ opacity: 0.75 }}>{user.email}</a>
+      <div className="user-details-page">
+        
+        <div className="user-details-card">
+          <div className="user-details-top">
+
+            <img src={user.image}
+              className="user-details-avatar" />
+
+            <div className="user-details-main">
+              <div className="user-details-name">
+                {user.firstName} {user.lastName}
+              </div>
+
+              <a href={`mailto:${user.email}`}className="user-details-email">
+                {user.email}
+              </a>
+
+            </div>
           </div>
-        </div>
 
-        <div style={{ marginTop: 16, textAlign: 'left' }}>
-          <div><b>Phone:</b> {user.phone}</div>
-          <div><b>Company:</b> {user.company.name}</div>
-          <div><b>Role:</b> {user.role}</div>
-          <div><b>Age:</b> {user.age}</div>
-          <div><b>Username:</b> {user.username}</div>
-          <div><b>IP:</b> {user.ip}</div>
-        </div>
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">Phone:</span>
+              <span> {user.phone}</span>
+            </div>
+          </div>
 
-        {q.isFetching ? <div style={{ marginTop: 8 }}>Updating...</div> : null}
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">Company:</span>
+              <span> {user.company.name}</span>
+            </div>
+          </div>
+
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">Role:</span>
+              <span> {user.role}</span>
+            </div>
+          </div>
+
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">Age:</span>
+              <span> {user.age}</span>
+            </div>
+          </div>
+
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">Username:</span>
+              <span> {user.username}</span>
+            </div>
+          </div>
+
+          <div className="user-details-extra">
+            <div className="user-details-row">
+              <span className="user-details-label">IP:</span>
+              <span> {user.ip}</span>
+            </div>
+          </div>
+
+          {q.isFetching ? <div style={{ marginTop: 8 }}>Updating...</div> : null}
+        </div>
       </div>
     </div>
   )
