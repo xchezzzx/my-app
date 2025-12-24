@@ -43,3 +43,15 @@ export async function fetchUserById(id: number): Promise<DummyUser> {
 
     return res.json();
 }
+
+export async function searchUsers(q:string, limit = 12, skip = 0): Promise<DummyUsersResponse> {
+    const url = new URL('https://dummyjson.com/users/search')
+    url.searchParams.set('q', q)
+    url.searchParams.set('limit', String(limit))
+    url.searchParams.set('skip', String(skip))
+
+    const res = await fetch(url)
+    if (!res.ok) throw new Error(`HHTP ${res.status}`);
+    
+    return res.json();
+}

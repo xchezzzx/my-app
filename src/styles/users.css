@@ -188,3 +188,23 @@
 .user-details-label {
   font-weight: 600;
 }
+
+.users-filter {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: transparent;
+  color: inherit;
+  width: min(420px, 100%);
+  outline: none;
+  margin-bottom: 16px;
+}
+
+.users-filter:focus {
+  border-color: #999;
+}
+
+.users-title {
+  margin: 0;
+}

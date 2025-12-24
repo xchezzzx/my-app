@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { fetchUsers } from "../api/dummyUsers";
+import { fetchUsers, searchUsers } from "../api/dummyUsers";
 import UserCard from "../components/UserCard";
 import '../styles/users.css'
 import { Link } from "react-router-dom";
@@ -32,12 +32,20 @@ function buildPageItems(current: number, total: number) {
 
 export default function UsersPage() {
   const [page, setPage] = useState(1);
+  const [filterText, setFilterText] = useState('')
+
   const limit = 12;
   const skip = (page - 1) * limit;
+  const qText = filterText.trim()
+
+  const onFilterChange = (v: string) => {
+    setFilterText(v)
+    setPage(1)
+  }
 
   const q = useQuery({
-    queryKey: ['users', { limit, skip }],
-    queryFn: () => fetchUsers(limit, skip),
+    queryKey: ['users', { qText, limit, skip }],
+    queryFn: () => (qText ? searchUsers(qText, limit, skip) : fetchUsers(limit, skip)),
     staleTime: 30_000
   });
 
@@ -49,13 +57,25 @@ export default function UsersPage() {
   const pageItems = useMemo(() => buildPageItems(page, totalPages), [page, totalPages])
   const canPrev = page > 1;
   const canNext = page < totalPages;
+
   if (q.isLoading) return <div>Loading...</div>
   if (q.isError) return <div>Error: {q.error.message}</div>
 
   return (
     <div>
       <Link to="/">← Back</Link>
-      <h4>User List</h4>
+
+      <div>
+        <h4 className="users-title">Users</h4>
+
+        <input
+          className="users-filter"
+          type="text"
+          placeholder="Filter users..."
+          value={filterText}
+          onChange={(e) => onFilterChange(e.target.value)}
+        />
+      </div>
 
       <div className="users-grid">
         {users.map(u =>
