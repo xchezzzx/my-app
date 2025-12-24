@@ -6,7 +6,7 @@ type LocationState = { user?: DummyUser }
 
 export default function UserDetailPage() {
   const { id } = useParams();
-  const userId = Number(id);
+  const userId = id ? Number(id) : NaN;
   const location = useLocation();
   const state = (location.state as LocationState | null) ?? null;
 
@@ -15,10 +15,13 @@ export default function UserDetailPage() {
   const q = useQuery({
     queryKey: ['user', userId],
     queryFn: () => fetchUserById(userId),
+    enabled: Number.isFinite(userId) && userId > 0,
     initialData: useFromState,
     staleTime: 10000
   })
 
+  if (!id) return <div>No </div>
+  if (!Number.isFinite(userId) || userId <=0) return <div>Bad ID</div>
   if (q.isLoading) return <div>Loading...</div>
   if (q.isError) return <div>Error: {q.error.message}</div>
 
